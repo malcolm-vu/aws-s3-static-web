@@ -1,3 +1,4 @@
+# Define CloudFront distribution 
 resource "aws_cloudfront_distribution" "cloudfront" {
   origin {
     domain_name = var.s3_bucket_domain_name
@@ -6,6 +7,14 @@ resource "aws_cloudfront_distribution" "cloudfront" {
   }
 
   enabled = true
+  default_root_object = "index.html"
+
+  custom_error_response {
+    error_code            = 404
+    response_code         = 404
+    response_page_path    = "/error.html"
+    error_caching_min_ttl = 10
+  }
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
@@ -36,12 +45,18 @@ resource "aws_cloudfront_distribution" "cloudfront" {
       restriction_type = "none"
     }
   }
+  # Enable CloudFront logging 
+  logging_config {
+    bucket = "${var.logging_bucket_id}.s3.amazonaws.com"
+    prefix = "cloudfront-logs/"
+  }
 
   tags = {
     Name = "CloudFront Distribution"
   }
 }
 
+# Define OAC for CloudFront
 resource "aws_cloudfront_origin_access_control" "cloudfront_oac" {
   name                              = "cloudfront-oac"
   description                       = "OAC for S3 bucket"
