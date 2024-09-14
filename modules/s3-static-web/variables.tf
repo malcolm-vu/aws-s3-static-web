@@ -10,7 +10,7 @@ variable "error_document" {
   default     = "error.html"
 }
 
-variable "cloudfront_oac_id" {
-  description = "CloudFront OAC ID"
+variable "cloudfront_distribution_arn" {
+  description = "CloudFront ARN"
   type = string
 }

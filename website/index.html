@@ -27,14 +27,13 @@
 <body>
     <h1>Welcome to My Static Website😊</h1>
     <div class="container">
-        <p>This is a sample index page for a S3-hosted static website with CloudFront distribution via Terraform</p>
-        <p>Some things you might want to add:</p>
+        <p>This is a sample index page for a S3-hosted static website with CloudFront distribution using Terraform</p>
+        <p>Some details of the architecture:</p>
         <ul>
-            <li>Your own styling and branding</li>
-            <li>Navigation menu</li>
-            <li>Content sections</li>
-            <li>Images and other media</li>
-            <li>Contact information or forms</li>
+            <li>Terraform modules used for the different components</li>
+            <li>Cloudfront Origin Access Control (OAC) used to ensure secure access to S3 bucket</li>
+            <li>S3 server access and CloudFront logging</li>
+            <li>CloudWatch metric alarm triggering email via SNS notification for 404 errors</li>
         </ul>
         <p>More information can be found in the Github page.</p>
     </div>
